@@ -1,4 +1,4 @@
-//GO CALCULATOR
+//----GO CALCULATOR
 package main
 
 import (

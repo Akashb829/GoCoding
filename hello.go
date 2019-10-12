@@ -21,122 +21,88 @@ func hfunc(w http.ResponseWriter, r *http.Request) {
 
 func add(w http.ResponseWriter, r *http.Request) {
 
-	//Getting request
+	var sum int
 	err := r.ParseForm()
 	if err != nil {
 		log.Println(err)
 	}
-
-	//Getting the URL parameters
-	x := r.URL.Query()
-
-	//Getting values corresponding to keys
-	a := x.Get("a")
-	b := x.Get("b")
-
-	//Converting string values to int
-	i1, er1 := strconv.Atoi(a)
-	if er1 != nil {
-		fmt.Println(er1)
+	for key, value := range r.Form {
+		fmt.Printf("Key = %v | Value = %v", key, value[0])
+		i1, er1 := strconv.Atoi(value[0])
+		if er1 != nil {
+			fmt.Println(er1)
+		}
+		sum += i1
 	}
-	i2, er2 := strconv.Atoi(b)
-	if er2 != nil {
-		fmt.Println(er1)
-	}
-
-	//Adding
-	fmt.Println(i1, i2)
-	sum := i1 + i2
 	fmt.Fprintf(w, "%v", sum)
 }
 
 func sub(w http.ResponseWriter, r *http.Request) {
 
-	//Getting request
+	var diff int
+	var vals [2]string
+	var val [2]int
+	i := 0
 	err := r.ParseForm()
 	if err != nil {
 		log.Println(err)
 	}
-
-	//Getting the URL parameters
-	x := r.URL.Query()
-
-	//Getting values corresponding to keys
-	a := x.Get("a")
-	b := x.Get("b")
-
-	//Converting string values to int
-	i1, er1 := strconv.Atoi(a)
-	if er1 != nil {
-		fmt.Println(er1)
+	for key, value := range r.Form {
+		fmt.Printf("Key = %v | Value = %v", key, value[0])
+		vals[i] = value[0]
+		i1, er1 := strconv.Atoi(vals[i])
+		if er1 != nil {
+			fmt.Println(er1)
+		}
+		val[i] = i1
+		i++
 	}
-	i2, er2 := strconv.Atoi(b)
-	if er2 != nil {
-		fmt.Println(er1)
-	}
-
-	//Subtracting
-	fmt.Println(i1, i2)
-	diff := i1 - i2
+	diff = val[0] - val[1]
 	fmt.Fprintf(w, "%v", diff)
 }
 func div(w http.ResponseWriter, r *http.Request) {
 
-	//Getting request
+	var divi int
+	var vals [2]string
+	var val [2]int
+	i := 0
 	err := r.ParseForm()
 	if err != nil {
 		log.Println(err)
 	}
-
-	//Getting the URL parameters
-	x := r.URL.Query()
-
-	//Getting values corresponding to keys
-	a := x.Get("a")
-	b := x.Get("b")
-
-	//Converting string values to int
-	i1, er1 := strconv.Atoi(a)
-	if er1 != nil {
-		fmt.Println(er1)
+	for key, value := range r.Form {
+		fmt.Printf("Key = %v | Value = %v", key, value[0])
+		vals[i] = value[0]
+		i1, er1 := strconv.Atoi(vals[i])
+		if er1 != nil {
+			fmt.Println(er1)
+		}
+		val[i] = i1
+		i++
 	}
-	i2, er2 := strconv.Atoi(b)
-	if er2 != nil {
-		fmt.Println(er1)
-	}
-
-	//Dividing
-	fmt.Println(i1, i2)
-	divi := i1 / i2
+	divi = val[0] / val[1]
 	fmt.Fprintf(w, "%v", divi)
 }
 func mult(w http.ResponseWriter, r *http.Request) {
 
-	//Getting request
+	var prod int
+	var vals [2]string
+	var val [2]int
+	i := 0
 	err := r.ParseForm()
 	if err != nil {
 		log.Println(err)
 	}
-
-	//Getting the URL parameters
-	x := r.URL.Query()
-
-	//Getting values corresponding to keys
-	a := x.Get("a")
-	b := x.Get("b")
-
-	//Converting string values to int
-	i1, er1 := strconv.Atoi(a)
-	if er1 != nil {
-		fmt.Println(er1)
+	for key, value := range r.Form {
+		fmt.Printf("Key = %v | Value = %v", key, value[0])
+		vals[i] = value[0]
+		i1, er1 := strconv.Atoi(vals[i])
+		if er1 != nil {
+			fmt.Println(er1)
+		}
+		val[i] = i1
+		i++
 	}
-	i2, er2 := strconv.Atoi(b)
-	if er2 != nil {
-		fmt.Println(er1)
-	}
-
-	//Multiplying
-	fmt.Println(i1, i2)
-	prod := i1 * i2
+	prod = val[1] * val[0]
 	fmt.Fprintf(w, "%v", prod)
 }
